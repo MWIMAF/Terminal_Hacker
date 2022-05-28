@@ -29,13 +29,17 @@ public class Hacker : MonoBehaviour
 
     void OnUserInput (string input)
     {
-        if (input == "1")
+        if (input == "menu")
         {
-            print(true);
+            ShowMainMenu("[NAME]");
+        }
+        else if(input == "1")
+        {
+            print("you chose "+ input);
         }
         else
         {
-            print(false);
+            print("false");
         }
 
     }
