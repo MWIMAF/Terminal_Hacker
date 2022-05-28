@@ -26,4 +26,17 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("");
         Terminal.WriteLine("Input here: ");
     }
+
+    void OnUserInput (string input)
+    {
+        if (input == "1")
+        {
+            print(true);
+        }
+        else
+        {
+            print(false);
+        }
+
+    }
 }
