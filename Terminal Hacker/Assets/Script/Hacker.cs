@@ -7,7 +7,7 @@ public class Hacker : MonoBehaviour
     int lvl;
     string password;
     string[] lvl1pass = { "font", "book", "view", "edit", "file" };
-    string[] lvl2pass = { "skill", "read", "dead", "shoot" };
+    string[] lvl2pass = { "skill", "read", "dead", "shoot" };    
 
     enum Screen { MainMenu, Password, Win };
     Screen currentScreen;
@@ -37,7 +37,7 @@ public class Hacker : MonoBehaviour
     }
 
     void OnUserInput (string input)
-    {
+    {        
         if (input == "menu")
         {
             ShowMainMenu("[NAME]");
@@ -58,16 +58,10 @@ public class Hacker : MonoBehaviour
 
         void RunMainMenu(string input)
         {
-            if (input == "1")
+            bool isValidNumber = (input == "1" || input == "2");
+            if (isValidNumber)
             {
-                lvl = 1;
-                password = lvl1pass[Random.Range(0, 4)];
-                StartGame();
-            }
-            else if (input == "2")
-            {
-                lvl = 2;
-                password = lvl2pass[Random.Range(0,3)];
+                lvl = int.Parse(input);
                 StartGame();
             }
             else
@@ -80,8 +74,20 @@ public class Hacker : MonoBehaviour
 
     void StartGame ()
     {
+        int index;
         currentScreen = Screen.Password;
         Terminal.ClearScreen();
+        switch (lvl)
+        {
+            case 1:
+                index = Random.Range(0, lvl1pass.Length);
+                password = lvl1pass[index];
+                break;
+            case 2:
+                index = Random.Range(0, lvl2pass.Length);
+                password = lvl2pass[index];
+                break;
+        }
         Terminal.WriteLine("You have chosen level " + lvl);
         Terminal.WriteLine("Please Enter password: ");
     }
