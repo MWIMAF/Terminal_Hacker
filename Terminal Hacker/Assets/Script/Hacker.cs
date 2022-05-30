@@ -6,6 +6,8 @@ public class Hacker : MonoBehaviour
 {
     int lvl;
     string password;
+    string[] lvl1pass = { "font", "book", "view", "edit", "file" };
+    string[] lvl2pass = { "skill", "read", "dead", "shoot" };
 
     enum Screen { MainMenu, Password, Win };
     Screen currentScreen;
@@ -20,7 +22,7 @@ public class Hacker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 
     void ShowMainMenu(string greeting)
@@ -49,19 +51,23 @@ public class Hacker : MonoBehaviour
         {
             CheckPassword(input);
         }
+        else if (input == "exit")
+        {
+            Application.Quit();
+        }
 
         void RunMainMenu(string input)
         {
             if (input == "1")
             {
                 lvl = 1;
-                password = "0000";
+                password = lvl1pass[Random.Range(0, 4)];
                 StartGame();
             }
             else if (input == "2")
             {
                 lvl = 2;
-                password = "2103";
+                password = lvl2pass[Random.Range(0,3)];
                 StartGame();
             }
             else
