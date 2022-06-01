@@ -22,7 +22,11 @@ public class Hacker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
     }
 
     void ShowMainMenu(string greeting)
@@ -35,7 +39,7 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("");
         Terminal.WriteLine("Input here: ");
     }
-
+    
     void OnUserInput (string input)
     {        
         if (input == "menu")
@@ -50,10 +54,6 @@ public class Hacker : MonoBehaviour
         else if (currentScreen == Screen.Password)
         {
             CheckPassword(input);
-        }
-        else if (input == "exit")
-        {
-            Application.Quit();
         }
 
         void RunMainMenu(string input)
@@ -121,10 +121,13 @@ public class Hacker : MonoBehaviour
                 break;
             case 2:
                 Terminal.WriteLine("Well Done! Have A Key! ?????");
-                Terminal.WriteLine(" ___/  ");
-                Terminal.WriteLine("/ - - - /");
-                Terminal.WriteLine("/ - - - /");
-                Terminal.WriteLine("/ - - - /");
+                Terminal.WriteLine(@" 
+  __        _
+ /  \______| |
+|    ________|
+ \__/
+                ");
+                
                 Terminal.WriteLine("");
                 break;
         }
