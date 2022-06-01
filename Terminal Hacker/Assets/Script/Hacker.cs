@@ -96,14 +96,38 @@ public class Hacker : MonoBehaviour
     {
         if (input == password)
         {
-            Terminal.ClearScreen();
-            Terminal.WriteLine("Well done! You're in!");
-            Terminal.WriteLine("");
-            Terminal.WriteLine("Type 'menu' to back to main menu!");
+            WinScreen();
         }
         else
         {
             Terminal.WriteLine("ups, that's wrong!");
         }
+    }
+
+    void WinScreen()
+    {
+        currentScreen = Screen.Win;
+        Terminal.ClearScreen();
+        switch (lvl)
+        {
+            case 1:
+                Terminal.WriteLine("Well Done! Have A Book ??");
+                Terminal.WriteLine(" ------- ");
+                Terminal.WriteLine("/ - - - /");
+                Terminal.WriteLine("/ - - - /");
+                Terminal.WriteLine("/ - - - /");
+                Terminal.WriteLine(" ------- ");
+                Terminal.WriteLine("");
+                break;
+            case 2:
+                Terminal.WriteLine("Well Done! Have A Key! ?????");
+                Terminal.WriteLine(" ___/  ");
+                Terminal.WriteLine("/ - - - /");
+                Terminal.WriteLine("/ - - - /");
+                Terminal.WriteLine("/ - - - /");
+                Terminal.WriteLine("");
+                break;
+        }
+        Terminal.WriteLine("Type 'menu' to back to main menu!");
     }
 }
