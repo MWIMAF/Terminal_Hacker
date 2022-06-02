@@ -6,17 +6,19 @@ public class Hacker : MonoBehaviour
 {
     int lvl;
     string password;
+    const string menuText = "Type 'menu' to back to main menu!";
+    string playerName;
     string[] lvl1pass = { "font", "book", "view", "edit", "file" };
     string[] lvl2pass = { "skill", "read", "dead", "shoot" };    
 
-    enum Screen { MainMenu, Password, Win };
+    enum Screen { MainMenu, Password, Win, Name };
     Screen currentScreen;
 
     // Start is called before the first frame update
     void Start()
     {
-        ShowMainMenu("[NAME]");
-        currentScreen = Screen.MainMenu;
+        Terminal.WriteLine("Please enter your name: ");
+        currentScreen = Screen.Name;
     }
 
     // Update is called once per frame
@@ -44,16 +46,26 @@ public class Hacker : MonoBehaviour
     {        
         if (input == "menu")
         {
-            ShowMainMenu("[NAME]");
+            ShowMainMenu(playerName);
             currentScreen = Screen.MainMenu;
         }
-        else if (currentScreen == Screen.MainMenu)
+        else if (currentScreen == Screen.MainMenu && input != "veruszkha")
         {
             RunMainMenu(input);
         }
         else if (currentScreen == Screen.Password)
         {
             CheckPassword(input);
+        }
+        else if (currentScreen == Screen.Name)
+        {            
+            playerName = input;
+            currentScreen = Screen.MainMenu;
+            ShowMainMenu(playerName);
+        }
+        else if (currentScreen == Screen.MainMenu && input == "veruszkha")
+        {
+            RunMainMenu("99");
         }
 
         void RunMainMenu(string input)
@@ -62,21 +74,37 @@ public class Hacker : MonoBehaviour
             if (isValidNumber)
             {
                 lvl = int.Parse(input);
-                StartGame();
+                AskPassword();
+            }
+            else if (input == "99")
+            {
+                lvl = 99;
+                Terminal.ClearScreen();
+                Terminal.WriteLine("test");
+                Terminal.WriteLine(menuText);
             }
             else
             {
                 Terminal.WriteLine("Please input valid number");
+                Terminal.WriteLine(menuText);
             }
         }
 
     }
 
-    void StartGame ()
+    void AskPassword ()
     {
-        int index;
         currentScreen = Screen.Password;
         Terminal.ClearScreen();
+        RandPassword();
+        Terminal.WriteLine("You have chosen level " + lvl);
+        Terminal.WriteLine("Please Enter password, " + password.Anagram());
+        Terminal.WriteLine(menuText);
+    }
+
+    void RandPassword()
+    {
+        int index;
         switch (lvl)
         {
             case 1:
@@ -88,8 +116,6 @@ public class Hacker : MonoBehaviour
                 password = lvl2pass[index];
                 break;
         }
-        Terminal.WriteLine("You have chosen level " + lvl);
-        Terminal.WriteLine("Please Enter password: ");
     }
 
     void CheckPassword (string input)
@@ -100,7 +126,7 @@ public class Hacker : MonoBehaviour
         }
         else
         {
-            Terminal.WriteLine("ups, that's wrong!");
+            AskPassword();
         }
     }
 
@@ -131,6 +157,6 @@ public class Hacker : MonoBehaviour
                 Terminal.WriteLine("");
                 break;
         }
-        Terminal.WriteLine("Type 'menu' to back to main menu!");
+        Terminal.WriteLine(menuText);
     }
 }
