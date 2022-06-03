@@ -79,8 +79,17 @@ public class Hacker : MonoBehaviour
             else if (input == "99")
             {
                 lvl = 99;
+                currentScreen = Screen.Password;
                 Terminal.ClearScreen();
-                Terminal.WriteLine("test");
+                Terminal.WriteLine("Weh ketemu easter eggnya!");
+                Terminal.WriteLine("khusus ini aku bakalan pake Bahasa");
+                Terminal.WriteLine("");
+                RandPassword();
+                Terminal.WriteLine(@"Siapa penyanyi favorit saya?
+hint: " + password.Anagram());
+
+
+
                 Terminal.WriteLine(menuText);
             }
             else
@@ -98,7 +107,7 @@ public class Hacker : MonoBehaviour
         Terminal.ClearScreen();
         RandPassword();
         Terminal.WriteLine("You have chosen level " + lvl);
-        Terminal.WriteLine("Please Enter password, " + password.Anagram());
+        Terminal.WriteLine("Please Enter password, hint: " + password.Anagram());
         Terminal.WriteLine(menuText);
     }
 
@@ -114,6 +123,9 @@ public class Hacker : MonoBehaviour
             case 2:
                 index = Random.Range(0, lvl2pass.Length);
                 password = lvl2pass[index];
+                break;
+            case 99:
+                password = "paul";
                 break;
         }
     }
@@ -138,10 +150,10 @@ public class Hacker : MonoBehaviour
         {
             case 1:
                 Terminal.WriteLine("Well Done! Have A Book ??");
-                Terminal.WriteLine(" ------- ");
-                Terminal.WriteLine("/ - - - /");
-                Terminal.WriteLine("/ - - - /");
-                Terminal.WriteLine("/ - - - /");
+                Terminal.WriteLine("     ------- ");
+                Terminal.WriteLine("   / - - - /");
+                Terminal.WriteLine("  / - - - /");
+                Terminal.WriteLine(" / - - - /");
                 Terminal.WriteLine(" ------- ");
                 Terminal.WriteLine("");
                 break;
@@ -154,6 +166,14 @@ public class Hacker : MonoBehaviour
  \__/
                 ");
                 
+                Terminal.WriteLine("");
+                break;
+            case 99:
+                Terminal.WriteLine("Aku tau lagunya dari si v");
+                Terminal.WriteLine("kalo kenal v blg makasih");
+                Terminal.WriteLine("kalo kamu v, foto ini");
+                Terminal.WriteLine("dadahh! dan terima kasih");
+                Terminal.WriteLine("-W");
                 Terminal.WriteLine("");
                 break;
         }
