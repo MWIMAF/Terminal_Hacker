@@ -67,6 +67,11 @@ public class Hacker : MonoBehaviour
         {
             RunMainMenu("99");
         }
+        else if (currentScreen == Screen.Win)
+        {
+            Terminal.WriteLine(menuText);
+        }
+
 
         void RunMainMenu(string input)
         {
@@ -158,7 +163,7 @@ hint: " + password.Anagram());
                 Terminal.WriteLine("");
                 break;
             case 2:
-                Terminal.WriteLine("Well Done! Have A Key! ?????");
+                Terminal.WriteLine("Well Done! Have A Key!");
                 Terminal.WriteLine(@" 
   __        _
  /  \______| |
